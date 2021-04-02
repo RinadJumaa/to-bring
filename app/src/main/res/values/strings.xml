@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">sm</string>
+    <string name="map_key" translatable="false">
+        AIzaSyDc-CZwYwlem8ubPokBxHl_WXlIXBq62Qs</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register">Register</string>
+    <string name="full_name">Full Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="logout">Logout</string>
+    <string name="save">Save</string>
+    <string name="new_task">New Task</string>
+    <string name="tasks">Tasks</string>
+</resources>
