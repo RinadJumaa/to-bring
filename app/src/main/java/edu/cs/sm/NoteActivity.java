@@ -15,7 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import java.sql.Date;
 import java.util.List;
+
 
 public class NoteActivity extends AppCompatActivity implements View.OnClickListener, NoteAdapter.onItemClickListner {
 
@@ -99,6 +102,7 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
             String note_description = data.getStringExtra("note_description");
             int note_priority = data.getIntExtra("note_priority",0);
 
+
             noteViewModel.insert(new Note(note_title,note_description,note_priority));
 
             Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
@@ -108,6 +112,7 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
             String note_description = data.getStringExtra("note_description");
             int note_priority = data.getIntExtra("note_priority",0);
             int note_id = data.getIntExtra("id",0);
+
 
             Note note = new Note(note_title,note_description,note_priority);
             note.setId(note_id);

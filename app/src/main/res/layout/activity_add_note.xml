@@ -43,6 +43,42 @@
             android:layout_marginTop="5dp">
 
         </NumberPicker>
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/imgcalender"
+            android:layout_toRightOf="@+id/tvDate"
+            android:layout_below="@+id/addNote_numberPacker"
+            android:src="@drawable/ic_calender"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addNote_numberPacker"
+            android:hint="Select Date"
+            android:id="@+id/tvDate"
+            android:layout_marginTop="50dp"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/repeat_text"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/tvDate"
+            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:text="repeat" />
+
+        <Switch
+            android:id="@+id/repeat_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgcalender"
+            android:layout_toRightOf="@+id/repeat_text"
+            android:layout_centerVertical="true"
+            android:onClick="onSwitchRepeat"
+            android:checked="true"
+            android:textOn="On"
+            android:textOff="Off"/>
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

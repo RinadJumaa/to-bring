@@ -33,7 +33,7 @@ public class MyDay extends AppCompatActivity {
         imgMYday.setOnClickListener(new View.OnClickListener() {
                 @Override
             public void onClick(View v) {
-                Intent i = new Intent(edu.cs.sm.MyDay.this, SecondActivity.class);
+                Intent i = new Intent(edu.cs.sm.MyDay.this, NoteActivity.class);
                 startActivity(i);
                 finish();
             }

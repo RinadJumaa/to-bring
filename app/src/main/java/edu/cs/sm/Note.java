@@ -3,19 +3,18 @@ package edu.cs.sm;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.sql.Date;
+
 @Entity(tableName = "note_table")
 public class Note {
 
     @PrimaryKey(autoGenerate = true)
     int id;
-
     String title;
-
     String description;
-
     int priority;
 
-    public Note(String title, String description, int priority) {
+    public Note(String title, String description, int priority ) {
         this.title = title;
         this.description = description;
         this.priority = priority;
@@ -40,4 +39,5 @@ public class Note {
     public int getPriority() {
         return priority;
     }
+
 }
