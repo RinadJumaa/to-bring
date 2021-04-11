@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">sm</string>
     <string name="map_key" translatable="false">
-        AIzaSyDc-CZwYwlem8ubPokBxHl_WXlIXBq62Qs</string>
+        AIzaSyB_qsP8AOP_P0MdlPz-48TDaJYjTP3vbjo</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
     <string name="register">Register</string>

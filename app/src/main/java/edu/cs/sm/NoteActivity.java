@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.sql.Date;
@@ -26,6 +27,7 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView recyclerView;
     NoteAdapter noteAdapter;
     FloatingActionButton floatingActionButton;
+    Button btnMap;
 
     public static final int ADD_NOTE_REQUEST = 1;
     public static final int EDIT_NOTE_REQUEST = 2;
@@ -37,6 +39,15 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
 
         floatingActionButton = findViewById(R.id.noteActivity_floatingButton);
         recyclerView = findViewById(R.id.noteActivity_recyclerView);
+        btnMap=findViewById(R.id.btnmap);
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(edu.cs.sm.NoteActivity.this, LocationAlarm.class);
+                startActivity(i);
+                finish();
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 

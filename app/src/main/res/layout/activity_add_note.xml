@@ -79,6 +79,13 @@
             android:textOn="On"
             android:textOff="Off"/>
 
+        <Button
+            android:id="@+id/btnmap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Location" />
+
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

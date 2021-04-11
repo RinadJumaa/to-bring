@@ -44,7 +44,7 @@ public class SecondActivity extends AppCompatActivity {
         etMyday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(edu.cs.sm.SecondActivity.this, MyDay.class);
+                Intent i = new Intent(edu.cs.sm.SecondActivity.this, LocationAlarm.class);
                 startActivity(i);
                 finish();
             }
