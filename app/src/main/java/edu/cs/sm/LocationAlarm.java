@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -52,8 +53,7 @@ public class LocationAlarm extends FragmentActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_alarm);
-        client = LocationServices.getFusedLocationProviderClient(this);
-     /*   imgBack=findViewById(R.id.imgback);
+        imgBack=findViewById(R.id.imgback);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +61,8 @@ public class LocationAlarm extends FragmentActivity implements OnMapReadyCallbac
                 startActivity(i);
                 finish();
             }
-        });*/
+        });
+        client = LocationServices.getFusedLocationProviderClient(this);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         //getMyLocation();
 

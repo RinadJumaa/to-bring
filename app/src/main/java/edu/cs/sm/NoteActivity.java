@@ -39,15 +39,7 @@ public class NoteActivity extends AppCompatActivity implements View.OnClickListe
 
         floatingActionButton = findViewById(R.id.noteActivity_floatingButton);
         recyclerView = findViewById(R.id.noteActivity_recyclerView);
-        btnMap=findViewById(R.id.btnmap);
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(edu.cs.sm.NoteActivity.this, LocationAlarm.class);
-                startActivity(i);
-                finish();
-            }
-        });
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 

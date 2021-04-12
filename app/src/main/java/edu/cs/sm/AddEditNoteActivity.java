@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
     private TextView mDisplayDate;
     private ImageView imgcalender;
     private Switch mRepeatSwitch;
+    Button btnAddlocation;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
@@ -42,6 +44,15 @@ public class AddEditNoteActivity extends AppCompatActivity {
         mDisplayDate = (TextView) findViewById(R.id.tvDate);
         imgcalender=findViewById(R.id.imgcalender);
         mRepeatSwitch = (Switch) findViewById(R.id.repeat_switch);
+        btnAddlocation=findViewById(R.id.btnmap);
+        btnAddlocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(edu.cs.sm.AddEditNoteActivity.this, LocationAlarm.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
 
         imgcalender.setOnClickListener(new View.OnClickListener() {
