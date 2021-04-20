@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginRight="8dp">
+    android:layout_marginRight="8dp"
+    app:cardBackgroundColor="@color/teal_200">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:background="@color/teal_200">
 
         <TextView
             android:id="@+id/note_item_priority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="1"
+            android:textColor="@color/white"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="25dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -27,7 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@+id/note_item_priority"
+            android:textColor="@color/white"
             android:text="Title"
+            android:textSize="25dp"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
@@ -38,6 +45,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@+id/note_item_priority"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:text="Description"/>
 
 

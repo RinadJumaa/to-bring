@@ -16,8 +16,7 @@
             android:id="@+id/addNoteActivity_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"
-            />
+            android:hint="Title" />
 
         <EditText
             android:layout_below="@+id/addNoteActivity_title"
@@ -83,7 +82,8 @@
             android:id="@+id/btnmap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set Location" />
+            android:text="Set Location"
+            android:layout_below="@id/repeat_switch"/>
 
 
     </RelativeLayout>
