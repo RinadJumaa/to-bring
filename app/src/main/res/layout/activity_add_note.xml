@@ -58,32 +58,40 @@
             android:id="@+id/tvDate"
             android:layout_marginTop="50dp"
             android:textSize="20sp"/>
-        <TextView
-            android:id="@+id/repeat_text"
-            android:layout_width="wrap_content"
-            android:layout_below="@+id/tvDate"
-            android:textSize="20dp"
-            android:layout_height="wrap_content"
-            android:text="repeat" />
 
-        <Switch
-            android:id="@+id/repeat_switch"
+
+        <TextView
+            android:id="@+id/locationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgcalender"
-            android:layout_toRightOf="@+id/repeat_text"
-            android:layout_centerVertical="true"
-            android:onClick="onSwitchRepeat"
-            android:checked="true"
-            android:textOn="On"
-            android:textOff="Off"/>
+            android:textSize="18dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="214dp"
+            android:hint="Location" />
 
         <Button
             android:id="@+id/btnmap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set Location"
-            android:layout_below="@id/repeat_switch"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="135dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginBottom="134dp"
+            android:text="Set Location" />
+
+        <Switch
+            android:id="@+id/repeat_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="285dp"
+            android:text="Repeat"
+            android:textSize="18sp" />
 
 
     </RelativeLayout>

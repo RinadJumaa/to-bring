@@ -49,6 +49,14 @@ public class SecondActivity extends AppCompatActivity {
                 finish();
             }
         });
+        etUMakegroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(edu.cs.sm.SecondActivity.this, LoginActivityGroup.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
 
 

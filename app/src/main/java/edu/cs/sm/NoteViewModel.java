@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+
 public class NoteViewModel extends AndroidViewModel {
 
     private NoteRepository noteRepository;

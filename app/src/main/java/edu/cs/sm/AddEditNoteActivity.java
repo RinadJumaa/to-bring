@@ -1,6 +1,7 @@
 package edu.cs.sm;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,12 +11,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,14 +27,18 @@ import java.util.Calendar;
 
 public class AddEditNoteActivity extends AppCompatActivity {
 
+    Dialog myDialog;
     EditText title;
     EditText description;
     NumberPicker numberPicker;
     private static final String TAG = "MainActivity";
     private TextView mDisplayDate;
     private ImageView imgcalender;
-    private Switch mRepeatSwitch;
+    private TextView txtRepeat;
+    private TextView locationName;
     Button btnAddlocation;
+    private Switch repeat_switch;
+
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
@@ -39,21 +46,39 @@ public class AddEditNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
 
-        title = findViewById(R.id.addNoteActivity_title);
-        description = findViewById(R.id.addNoteActivity_description);
-        mDisplayDate = (TextView) findViewById(R.id.tvDate);
-        imgcalender=findViewById(R.id.imgcalender);
-        mRepeatSwitch = (Switch) findViewById(R.id.repeat_switch);
-        btnAddlocation=findViewById(R.id.btnmap);
+        setUPviews();
+
+        Intent checkboxIntent = getIntent();
+        String checkBox = checkboxIntent.getStringExtra("cbvalue");
+
         btnAddlocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String note_title = title.getText().toString();
                 Intent i = new Intent(edu.cs.sm.AddEditNoteActivity.this, LocationAlarm.class);
+                i.putExtra("note_title", note_title);
+                int id = getIntent().getIntExtra("id",-1);
+                if (id > -1){
+                    i.putExtra("id",id);
+                }
+
+                String switchValue;
+                if(repeat_switch.isChecked())
+                    switchValue = "true";
+                else
+                    switchValue= "false";
+                i.putExtra("switchValue",switchValue);
+
+                //i.putExtra("cbvalue",checkBox);
                 startActivity(i);
                 finish();
             }
         });
 
+
+        Intent loc = getIntent();
+        String location = loc.getStringExtra("locationName");
+        locationName.setText(location);
 
         imgcalender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +120,43 @@ public class AddEditNoteActivity extends AppCompatActivity {
         } else {
             setTitle("Add Note");
         }
+
+//        txtRepeat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                TextView txtclose;
+//                Button btnSet;
+//                myDialog.setContentView(R.layout.custompopup);
+//                btnSet = (Button) myDialog.findViewById(R.id.btnSet);
+//                txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+//                txtclose.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        myDialog.dismiss();
+//                    }
+//                });
+//
+//                btnSet.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        RepeatAlarm();
+//                    }
+//                });
+//                myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                myDialog.show();
+//            }
+//        });
+    }
+
+    private void setUPviews() {
+        myDialog = new Dialog(this);
+        title = findViewById(R.id.addNoteActivity_title);
+        description = findViewById(R.id.addNoteActivity_description);
+        mDisplayDate = (TextView) findViewById(R.id.tvDate);
+        imgcalender=findViewById(R.id.imgcalender);
+        btnAddlocation=findViewById(R.id.btnmap);
+        locationName = findViewById(R.id.locationName);
+        repeat_switch = findViewById(R.id.repeat_switch);
     }
 
     @Override
@@ -112,17 +174,28 @@ public class AddEditNoteActivity extends AppCompatActivity {
         return true;
     }
 
+
+    private void RepeatAlarm(){
+
+        Toast.makeText(this, "BUTTON BEEN SET", Toast.LENGTH_SHORT).show();
+
+    }
+
+
     private void saveNote() {
         String note_title = title.getText().toString();
         String note_description = description.getText().toString();
+        String location = locationName.getText().toString();
         int note_priority = numberPicker.getValue();
 
         Intent intent = new Intent();
         intent.putExtra("note_title", note_title);
         intent.putExtra("note_description", note_description);
         intent.putExtra("note_priority", note_priority);
+        intent.putExtra("location_name",location);
+
         int id = getIntent().getIntExtra("id",-1);
-        if (id != -1){
+        if (id > -1){
             intent.putExtra("id",id);
         }
         setResult(RESULT_OK, intent);
