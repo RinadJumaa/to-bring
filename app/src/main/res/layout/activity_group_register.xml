@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#304769"
+    android:background="@drawable/backg"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="50dp"
@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:text="@string/sign_up"
+        android:text="Make Group"
         android:textAllCaps="true"
-        android:textColor="@android:color/white"
+        android:textColor="@color/gray_700"
         android:textSize="26sp"
         android:textStyle="bold" />
 
@@ -27,8 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@android:color/white"
-        android:hint="@string/full_name"
+        android:background="@drawable/custom_input"
+        android:hint=" Group Name"
         android:inputType="textPersonName"
         android:padding="10dp" />
 
@@ -37,8 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@android:color/white"
-        android:hint="username"
+        android:background="@drawable/custom_input"
+        android:hint="Group ID"
         android:inputType="textPersonName"
         android:padding="10dp" />
 
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@android:color/white"
+        android:background="@drawable/custom_input"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:padding="10dp" />
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@android:color/white"
+        android:background="@drawable/custom_input"
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:padding="10dp" />
@@ -67,26 +67,24 @@
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="#f05924"
-        android:text="@string/register"
+        android:layout_margin="15dp"
+        android:background="@drawable/custom_btn"
+        android:text="MAKE"
+        android:textSize="20dp"
         android:textColor="@android:color/white" />
 
+
     <TextView
+        android:id="@+id/btnRegisterLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="already_having_account"
-        android:textColor="#ccc" />
+        android:text="Already have a Group? JOIN"
+        android:textSize="15dp"
+        android:textColor="@color/gray_700"
+        android:textStyle="bold"
+        />
 
-    <Button
-        android:id="@+id/btnRegisterLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="#aaa"
-        android:text="@string/log_in"
-        android:textColor="@android:color/white" />
 
 </LinearLayout>

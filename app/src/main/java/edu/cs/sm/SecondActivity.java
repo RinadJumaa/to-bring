@@ -8,8 +8,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.cs.sm.Group.GroupLoginActivity;
-import edu.cs.sm.Group.GroupRegisterActivity;
-import edu.cs.sm.Group.LoginActivityGroup;
 
 
 public class SecondActivity extends AppCompatActivity {

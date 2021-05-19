@@ -164,11 +164,7 @@ public class GroupLoginActivity extends AppCompatActivity {
      */
     private boolean validateInputs() {
         if (KEY_EMPTY.equals(username)) {
-            etUsername.setError("Email cannot be empty");
-            etUsername.requestFocus();
-            return false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
-            etUsername.setError("Please Enter Valid email address");
+            etUsername.setError("GroupID cannot be empty");
             etUsername.requestFocus();
             return false;
         }
@@ -176,18 +172,19 @@ public class GroupLoginActivity extends AppCompatActivity {
             etPassword.setError("Password cannot be empty");
             etPassword.requestFocus();
 
-       /* } else {
-           // Toast.makeText(getApplicationContext(), "Invalid username or password ", Toast.LENGTH_LONG).show();
-             emptyInputEditText();*/
-        }
+        } else  {
+                Toast.makeText(getApplicationContext(), "Invalid username or password ", Toast.LENGTH_LONG).show();
+                emptyInputEditText();
+            }
+
         return true;
     }
 
 
-   /* private void emptyInputEditText() {
+     private void emptyInputEditText() {
         etUsername.setText(null);
         etPassword.setText(null);
-    }*/
+    }
 
     private void closeKeyboard() {
         View view = this.getCurrentFocus();

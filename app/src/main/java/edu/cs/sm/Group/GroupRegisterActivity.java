@@ -97,7 +97,7 @@ public class GroupRegisterActivity extends AppCompatActivity {
      * Launch Dashboard Activity on Successful Sign Up
      */
     public void loadsecondActivity() {
-        Intent intent = new Intent(this, edu.cs.sm.Group.GroupLoginActivity.class);
+        Intent intent = new Intent(this, edu.cs.sm.Group.GroupNoteActivity.class);
         startActivity(intent);
         finish();
     }
@@ -173,21 +173,17 @@ public class GroupRegisterActivity extends AppCompatActivity {
 
 
         if (KEY_EMPTY.equals(fullName)) {
-            etFullName.setError("Full Name cannot be empty");
+            etFullName.setError("Group Name cannot be empty");
             etFullName.requestFocus();
             return false;
 
         }
         if (KEY_EMPTY.equals(username)) {
-            etUsername.setError("Email cannot be empty");
+            etUsername.setError("GroupID cannot be empty");
             etUsername.requestFocus();
             return false;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
-            etUsername.setError("Please Enter Valid email address");
-            etUsername.requestFocus();
-            return false;
-        }
+
         if (KEY_EMPTY.equals(password)) {
             etPassword.setError("Password cannot be empty");
             etPassword.requestFocus();
