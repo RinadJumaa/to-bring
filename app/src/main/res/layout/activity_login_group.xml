@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".LoginActivityGroup">
+    tools:context=".Group.LoginActivityGroup">
 
     <ImageView
         android:layout_width="165dp"
@@ -15,19 +15,17 @@
         android:src="@drawable/login" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="370dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="344dp"
+        android:layout_height="518dp"
+        android:layout_marginRight="10dp"
         android:elevation="4dp"
         app:cardBackgroundColor="#820505"
-        app:cardUseCompatPadding="true"
-
-        >
+        app:cardCornerRadius="30dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="484dp"
             android:layout_margin="15dp"
             android:orientation="vertical">
 
@@ -39,6 +37,8 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="serif"
                     android:text="Log in Group "
                     android:textColor="@color/black"
                     android:textSize="28sp"
@@ -47,15 +47,7 @@
 
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:text="Log in to Continue"
-                android:textStyle="bold"
 
-
-                />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -67,7 +59,10 @@
                     android:id="@+id/ed_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:hint="ID"
+                    android:inputType="text"
+                    android:textSize="20dp"
 
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -81,15 +76,17 @@
                     android:id="@+id/ed_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textSize="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="25dp"
                 android:backgroundTint="@color/gray_700"
                 android:onClick="Login"
                 android:text="Login"
@@ -102,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:onClick="moveToRegistration"
                 android:text="Don't Have a Group ? Make Group"
                 android:textColor="@color/black"

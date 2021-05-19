@@ -7,13 +7,13 @@
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginRight="8dp"
-    app:cardBackgroundColor="@color/teal_200">
+    app:cardBackgroundColor="#8E0616">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@color/teal_200">
+        android:background="#820505">
 
         <TextView
             android:id="@+id/note_item_priority"

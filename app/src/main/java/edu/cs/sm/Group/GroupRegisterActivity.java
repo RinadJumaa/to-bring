@@ -1,4 +1,4 @@
-package edu.cs.sm;
+package edu.cs.sm.Group;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,7 +18,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RegisterActivity extends AppCompatActivity {
+import edu.cs.sm.R;
+
+public class GroupRegisterActivity extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_FULL_NAME = "full_name";
@@ -34,15 +36,15 @@ public class RegisterActivity extends AppCompatActivity {
     private String confirmPassword;
     private String fullName;
     private ProgressDialog pDialog;
-    private String register_url = "http://192.168.1.7/LoginandRegistration/register.php";
-    private SessionHandler session;
+    private String register_url = "http://192.168.1.7/groupLoginandRegistration/register.php";
+    private GroupSessionHandler session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        session = new SessionHandler(getApplicationContext());
-        setContentView(R.layout.activity_register);
+        session = new GroupSessionHandler(getApplicationContext());
+        setContentView(R.layout.activity_group_register);
 
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
@@ -56,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(edu.cs.sm.RegisterActivity.this, edu.cs.sm.LoginActivity.class);
+                Intent i = new Intent(edu.cs.sm.Group.GroupRegisterActivity.this, edu.cs.sm.Group.GroupLoginActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -83,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
      * Display Progress bar while registering
      */
     private void displayLoader() {
-        pDialog = new ProgressDialog(edu.cs.sm.RegisterActivity.this);
+        pDialog = new ProgressDialog(edu.cs.sm.Group.GroupRegisterActivity.this);
         pDialog.setMessage("Signing Up.. Please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
@@ -95,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
      * Launch Dashboard Activity on Successful Sign Up
      */
     public void loadsecondActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, edu.cs.sm.Group.GroupLoginActivity.class);
         startActivity(intent);
         finish();
     }
@@ -158,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
                 });
 
         // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+        edu.cs.sm.Group.GroupMySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
     }
 
     /**
@@ -181,11 +183,11 @@ public class RegisterActivity extends AppCompatActivity {
             etUsername.requestFocus();
             return false;
         }
-         if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
-             etUsername.setError("Please Enter Valid email address");
-             etUsername.requestFocus();
-             return false;
-         }
+        if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
+            etUsername.setError("Please Enter Valid email address");
+            etUsername.requestFocus();
+            return false;
+        }
         if (KEY_EMPTY.equals(password)) {
             etPassword.setError("Password cannot be empty");
             etPassword.requestFocus();

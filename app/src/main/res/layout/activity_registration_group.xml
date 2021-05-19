@@ -9,23 +9,23 @@
     tools:context=".RegistrationActivityGroup">
 
     <ImageView
-        android:layout_width="375dp"
-        android:layout_height="192dp"
+        android:layout_width="174dp"
+        android:layout_height="174dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/grouppeople" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="425dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="344dp"
+        android:layout_height="536dp"
+        android:layout_marginRight="10dp"
         android:elevation="4dp"
         app:cardBackgroundColor="#820505"
-        app:cardUseCompatPadding="true">
+        app:cardCornerRadius="30dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="506dp"
             android:layout_margin="15dp"
             android:orientation="vertical">
 
@@ -37,9 +37,11 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="serif"
                     android:text="Make Group"
                     android:textColor="@android:color/black"
-                    android:textSize="28sp"
+                    android:textSize="28dp"
                     android:textStyle="bold"
 
 
@@ -58,8 +60,10 @@
                     android:id="@+id/ed_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:hint="Group Name"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textSize="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +77,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="ID"
-                     />
+                    android:inputType="text"
+                    android:textSize="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -87,7 +92,8 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textSize="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -95,7 +101,7 @@
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="25dp"
                 android:backgroundTint="@color/gray_800"
                 android:onClick="Register"
                 android:text="JOIN"
@@ -108,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="35dp"
                 android:onClick="moveToLogin"
                 android:text="Aleardy Have a Group ? Login"
                 android:textColor="@android:color/black"

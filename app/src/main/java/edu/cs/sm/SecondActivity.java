@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.cs.sm.Group.GroupLoginActivity;
+import edu.cs.sm.Group.GroupRegisterActivity;
+import edu.cs.sm.Group.LoginActivityGroup;
+
 
 public class SecondActivity extends AppCompatActivity {
     private static final String KEY_MESSAGE = "message";
@@ -17,7 +21,6 @@ public class SecondActivity extends AppCompatActivity {
     private TextView etUserinfo;
     private TextView etMyday;
     private TextView etUMakegroup;
-    private TextView etTasks;
 
 
     @Override
@@ -29,7 +32,6 @@ public class SecondActivity extends AppCompatActivity {
         etUserinfo = findViewById(R.id.btninfo);
         etMyday = findViewById(R.id.btnMyday);
         etUMakegroup = findViewById(R.id.btnMakeGroup);
-        etTasks = findViewById(R.id.btnTasks);
         etUserinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +54,7 @@ public class SecondActivity extends AppCompatActivity {
         etUMakegroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(edu.cs.sm.SecondActivity.this, LoginActivityGroup.class);
+                Intent i = new Intent(edu.cs.sm.SecondActivity.this, GroupLoginActivity.class);
                 startActivity(i);
                 finish();
             }

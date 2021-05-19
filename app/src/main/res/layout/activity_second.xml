@@ -65,23 +65,6 @@
         android:textColor="#36FBE5"
         android:textStyle="bold"/>
 
-    <ImageView
-        android:id="@+id/imgTasks"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="360dp"
-        android:layout_marginLeft="-15dp"
-        android:src="@drawable/tasks"/>
-    <TextView
-        android:id="@+id/btnTasks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imgTasks"
-        android:layout_below="@+id/btnMakeGroup"
-        android:layout_marginTop="62dp"
-        android:text="Tasks"
-        android:textSize="25dp"
-        android:textColor="#36FBE5"
-        android:textStyle="bold"/>
+   
 
 </RelativeLayout>

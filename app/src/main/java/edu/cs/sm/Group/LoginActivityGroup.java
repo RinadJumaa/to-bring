@@ -1,10 +1,9 @@
-package edu.cs.sm;
+package edu.cs.sm.Group;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,11 +20,14 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.cs.sm.R;
+import edu.cs.sm.RegistrationActivityGroup;
+import edu.cs.sm.SecondActivity;
 
 public class LoginActivityGroup extends AppCompatActivity {
 
     EditText ed_email,ed_password;
-     Button btnlogin;
+
     String str_email,str_password;
     String url = "http://192.168.1.7/makegroups/login.php";
 
@@ -33,23 +35,15 @@ public class LoginActivityGroup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_group);
-        btnlogin=findViewById(R.id.btn_login);
+
         ed_email = findViewById(R.id.ed_email);
         ed_password = findViewById(R.id.ed_password);
-        btnlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(edu.cs.sm.LoginActivityGroup.this, NoteActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
     }
 
     public void Login(View view) {
 
         if(ed_email.getText().toString().equals("")){
-            Toast.makeText(this, "Enter GroupID", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter Email", Toast.LENGTH_SHORT).show();
         }
         else if(ed_password.getText().toString().equals("")){
             Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
@@ -61,7 +55,6 @@ public class LoginActivityGroup extends AppCompatActivity {
             progressDialog.setMessage("Please Wait..");
 
             progressDialog.show();
-
             str_email = ed_email.getText().toString().trim();
             str_password = ed_password.getText().toString().trim();
 
@@ -74,8 +67,11 @@ public class LoginActivityGroup extends AppCompatActivity {
                     if(response.equalsIgnoreCase("logged in successfully")){
 
                         ed_email.setText("");
-                        ed_password.setText("");
-                        startActivity(new Intent(getApplicationContext(),AddEditNoteActivity.class));
+                       ed_password.setText("");
+                  //      Intent i = new Intent(edu.cs.sm.Group.LoginActivityGroup.this, GroupNoteActivity.class);
+                    //    startActivity(i);
+                     //   loadsecondActivity();
+                        startActivity(new Intent(getApplicationContext(),RegistrationActivityGroup.class));
                         Toast.makeText(LoginActivityGroup.this, response, Toast.LENGTH_SHORT).show();
                     }
                     else{
@@ -96,7 +92,7 @@ public class LoginActivityGroup extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> params = new HashMap<String, String>();
-                    params.put("GroupID",str_email);
+                    params.put("email",str_email);
                     params.put("password",str_password);
                     return params;
 
@@ -111,9 +107,12 @@ public class LoginActivityGroup extends AppCompatActivity {
 
         }
     }
-
+    public void loadsecondActivity() {
+        Intent intent = new Intent(this, GroupNoteActivity.class);
+        startActivity(intent);
+    }
     public void moveToRegistration(View view) {
-        startActivity(new Intent(getApplicationContext(),RegistrationActivityGroup.class));
+        startActivity(new Intent(getApplicationContext(), RegistrationActivityGroup.class));
         finish();
     }
 }

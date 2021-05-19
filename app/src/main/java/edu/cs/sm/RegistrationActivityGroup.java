@@ -21,6 +21,8 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.cs.sm.Group.LoginActivityGroup;
+
 public class RegistrationActivityGroup extends AppCompatActivity {
 
     EditText ed_username,ed_email,ed_password;
@@ -40,7 +42,7 @@ public class RegistrationActivityGroup extends AppCompatActivity {
 
     public void moveToLogin(View view) {
 
-        startActivity(new Intent(getApplicationContext(),LoginActivityGroup.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivityGroup.class));
         finish();
     }
 
@@ -51,10 +53,10 @@ public class RegistrationActivityGroup extends AppCompatActivity {
 
 
         if(ed_username.getText().toString().equals("")){
-            Toast.makeText(this, "Enter GroupName", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
         }
         else if(ed_email.getText().toString().equals("")){
-            Toast.makeText(this, "Enter GroupID", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Enter Email", Toast.LENGTH_SHORT).show();
         }
         else if(ed_password.getText().toString().equals("")){
             Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
@@ -90,8 +92,8 @@ public class RegistrationActivityGroup extends AppCompatActivity {
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> params = new HashMap<String, String>();
 
-                    params.put("GroupName",str_name);
-                    params.put("GroupID",str_email);
+                    params.put("name",str_name);
+                    params.put("email",str_email);
                     params.put("password",str_password);
                     return params;
 

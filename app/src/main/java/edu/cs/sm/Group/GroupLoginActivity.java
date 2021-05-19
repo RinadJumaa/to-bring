@@ -1,4 +1,4 @@
-package edu.cs.sm;
+package edu.cs.sm.Group;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,15 +10,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RegisterActivity extends AppCompatActivity {
+import edu.cs.sm.R;
+
+public class GroupLoginActivity extends AppCompatActivity {
+
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_FULL_NAME = "full_name";
@@ -27,117 +33,108 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String KEY_EMPTY = "";
     private EditText etUsername;
     private EditText etPassword;
-    private EditText etConfirmPassword;
-    private EditText etFullName;
     private String username;
     private String password;
-    private String confirmPassword;
-    private String fullName;
     private ProgressDialog pDialog;
-    private String register_url = "http://192.168.1.7/LoginandRegistration/register.php";
-    private SessionHandler session;
+    private String login_url = "http://192.168.1.7/groupLoginandRegistration/login.php";
+    private edu.cs.sm.Group.GroupSessionHandler session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        session = new edu.cs.sm.Group.GroupSessionHandler(getApplicationContext());
         getSupportActionBar().hide();
-        session = new SessionHandler(getApplicationContext());
-        setContentView(R.layout.activity_register);
 
-        etUsername = findViewById(R.id.etUsername);
-        etPassword = findViewById(R.id.etPassword);
-        etConfirmPassword = findViewById(R.id.etConfirmPassword);
-        etFullName = findViewById(R.id.etFullName);
 
-        TextView login = findViewById(R.id.btnRegisterLogin);
-        Button register = findViewById(R.id.btnRegister);
+      /*  if (session.isLoggedIn()) {
+            loadsecondActivity();
+        }*/
+        setContentView(R.layout.activity_group_login);
 
-        //Launch Login screen when Login Button is clicked
-        login.setOnClickListener(new View.OnClickListener() {
+        etUsername = findViewById(R.id.etLoginUsername);
+        etPassword = findViewById(R.id.etLoginPassword);
+
+        TextView register = findViewById(R.id.btnLoginRegister);
+        Button login = findViewById(R.id.btnLogin);
+
+        //Launch Registration screen when Register Button is clicked
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(edu.cs.sm.RegisterActivity.this, edu.cs.sm.LoginActivity.class);
+                Intent i = new Intent(edu.cs.sm.Group.GroupLoginActivity.this, GroupRegisterActivity.class);
                 startActivity(i);
                 finish();
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Retrieve the data entered in the edit texts
                 username = etUsername.getText().toString().toLowerCase().trim();
                 password = etPassword.getText().toString().trim();
-                confirmPassword = etConfirmPassword.getText().toString().trim();
-                fullName = etFullName.getText().toString().trim();
                 if (validateInputs()) {
-                    registerUser();
+                    login();
                 }
 
             }
         });
-
     }
 
     /**
-     * Display Progress bar while registering
+     * Launch Dashboard Activity on Successful Login
      */
+    public void loadsecondActivity() {
+        Intent intent = new Intent(this, GroupNoteActivity.class);
+        startActivity(intent);
+    }
+   /* private void loadDashboard() {
+        Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
+        startActivity(i);
+        finish();
+
+    }*/
+
+    /**
+     * Display Progress bar while Logging in
+     */
+
     private void displayLoader() {
-        pDialog = new ProgressDialog(edu.cs.sm.RegisterActivity.this);
-        pDialog.setMessage("Signing Up.. Please wait...");
+        pDialog = new ProgressDialog(edu.cs.sm.Group.GroupLoginActivity.this);
+        pDialog.setMessage("Logging In.. Please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
 
     }
 
-    /**
-     * Launch Dashboard Activity on Successful Sign Up
-     */
-    public void loadsecondActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    /*private void loadDashboard() {
-        Intent i = new Intent(getApplicationContext(), edu.cs.simenar.DashboardActivity.class);
-        startActivity(i);
-        finish();
-
-    }*/
-
-    private void registerUser() {
+    private void login() {
         displayLoader();
         JSONObject request = new JSONObject();
+        closeKeyboard();
+
         try {
             //Populate the request parameters
             request.put(KEY_USERNAME, username);
             request.put(KEY_PASSWORD, password);
-            request.put(KEY_FULL_NAME, fullName);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, register_url, request, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, login_url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         pDialog.dismiss();
                         try {
-                            //Check if user got registered successfully
+                            //Check if user got logged in successfully
+
                             if (response.getInt(KEY_STATUS) == 0) {
-                                //Set the user session
-                                session.loginUser(username, fullName);
+                                session.loginUser(username, response.getString(KEY_FULL_NAME));
                                 loadsecondActivity();
 
-                            } else if (response.getInt(KEY_STATUS) == 1) {
-                                //Display error message if username is already existsing
-                                etUsername.setError("Username already taken!");
-                                etUsername.requestFocus();
-
                             } else {
-                                Toast.makeText(getApplicationContext(),
-                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 
                             }
                         } catch (JSONException e) {
@@ -151,14 +148,13 @@ public class RegisterActivity extends AppCompatActivity {
                         pDialog.dismiss();
 
                         //Display error message whenever an error occurs
-                        Toast.makeText(getApplicationContext(),
-                                error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
 
         // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+        GroupMySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
     }
 
     /**
@@ -167,44 +163,31 @@ public class RegisterActivity extends AppCompatActivity {
      * @return
      */
     private boolean validateInputs() {
-        closeKeyboard();
-
-
-        if (KEY_EMPTY.equals(fullName)) {
-            etFullName.setError("Full Name cannot be empty");
-            etFullName.requestFocus();
-            return false;
-
-        }
         if (KEY_EMPTY.equals(username)) {
             etUsername.setError("Email cannot be empty");
             etUsername.requestFocus();
             return false;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
+            etUsername.setError("Please Enter Valid email address");
+            etUsername.requestFocus();
+            return false;
         }
-         if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
-             etUsername.setError("Please Enter Valid email address");
-             etUsername.requestFocus();
-             return false;
-         }
         if (KEY_EMPTY.equals(password)) {
             etPassword.setError("Password cannot be empty");
             etPassword.requestFocus();
-            return false;
-        }
 
-        if (KEY_EMPTY.equals(confirmPassword)) {
-            etConfirmPassword.setError("Confirm Password cannot be empty");
-            etConfirmPassword.requestFocus();
-            return false;
+       /* } else {
+           // Toast.makeText(getApplicationContext(), "Invalid username or password ", Toast.LENGTH_LONG).show();
+             emptyInputEditText();*/
         }
-        if (!password.equals(confirmPassword)) {
-            etConfirmPassword.setError("Password and Confirm Password does not match");
-            etConfirmPassword.requestFocus();
-            return false;
-        }
-
         return true;
     }
+
+
+   /* private void emptyInputEditText() {
+        etUsername.setText(null);
+        etPassword.setText(null);
+    }*/
 
     private void closeKeyboard() {
         View view = this.getCurrentFocus();
@@ -214,3 +197,4 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 }
+

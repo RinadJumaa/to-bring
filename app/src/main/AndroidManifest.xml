@@ -16,8 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sm"
         android:usesCleartextTraffic="true">
-        <activity android:name="GROUP.GroupNoteActivity"></activity>
-        <activity android:name=".NoteGroup" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -29,9 +27,11 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".DashboardActivity" />
-        <activity android:name=".LoginActivityGroup" />
-        <activity android:name=".RegistrationActivityGroup" />
+        <activity android:name=".Group.GroupLoginActivity" />
+        <activity android:name=".Group.GroupRegisterActivity"/>
         <activity android:name=".NoteActivity" />
+        <activity android:name=".Group.GroupNoteActivity"/>
+        <activity android:name=".Group.GroupAddEditNoteActivity"/>
         <activity android:name=".AddEditNoteActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
