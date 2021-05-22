@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 import java.sql.Date;
 
 @Entity(tableName = "note_table")
+
 public class GroupNote {
 
     @PrimaryKey(autoGenerate = true)

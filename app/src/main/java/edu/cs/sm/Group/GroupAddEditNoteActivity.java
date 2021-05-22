@@ -59,7 +59,7 @@ public class GroupAddEditNoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String note_title = title.getText().toString();
                 Intent i = new Intent(edu.cs.sm.Group.GroupAddEditNoteActivity.this, LocationAlarm.class);
-                i.putExtra("note_title", note_title);
+                i.putExtra("notetitle", note_title);
                 int id = getIntent().getIntExtra("id",-1);
                 if (id > -1){
                     i.putExtra("id",id);
