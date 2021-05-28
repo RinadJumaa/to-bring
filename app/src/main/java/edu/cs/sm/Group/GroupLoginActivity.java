@@ -36,7 +36,7 @@ public class GroupLoginActivity extends AppCompatActivity {
     private String username;
     private String password;
     private ProgressDialog pDialog;
-    private String login_url = "http://192.168.1.7/groupLoginandRegistration/login.php";
+    private String login_url = "http://172.19.6.9/groupLoginandRegistration/login.php";
     private edu.cs.sm.Group.GroupSessionHandler session;
 
     @Override
@@ -175,6 +175,7 @@ public class GroupLoginActivity extends AppCompatActivity {
         } else  {
                 Toast.makeText(getApplicationContext(), "Invalid username or password ", Toast.LENGTH_LONG).show();
                 emptyInputEditText();
+                //I think you should return false
             }
 
         return true;

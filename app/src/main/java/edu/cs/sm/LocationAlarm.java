@@ -216,28 +216,31 @@ public class LocationAlarm extends FragmentActivity implements OnMapReadyCallbac
     public void refreshDistence(){
 
         // CODE IT USING THREAD!!!!!
-        count++;
-        Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, result);
-
-        //Toast.makeText(getApplicationContext(), "Distance: " + result[0], Toast.LENGTH_SHORT).show();
-        System.out.println("refreshed   " + result[0]);
-
-        generateNotification();
-
-        refresh(5000);
-
-    }
-
-    private void refresh(int milliseconds) {
         final Handler handler = new Handler();
-        final Runnable runnable = new Runnable() {
+        handler.post(new Runnable() {
             @Override
             public void run() {
-                refreshMyLocation();
-                refreshDistence();
+                if(repeat){
+
+                    Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, result);
+
+                    //Toast.makeText(getApplicationContext(), "Distance: " + result[0], Toast.LENGTH_SHORT).show();
+                    System.out.println("refreshed   " + result[0]);
+
+                    generateNotification();
+                }
+                handler.postDelayed(this,5000);
             }
-        };
-        handler.postDelayed(runnable, milliseconds);
+        });
+        count++;
+//        Location.distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude, result);
+//
+//        //Toast.makeText(getApplicationContext(), "Distance: " + result[0], Toast.LENGTH_SHORT).show();
+//        System.out.println("refreshed   " + result[0]);
+//
+//        generateNotification();
+
+        //refresh(5000);
 
     }
 
@@ -274,44 +277,69 @@ public class LocationAlarm extends FragmentActivity implements OnMapReadyCallbac
     public void refreshMyLocation(){
 
         mycount++;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this, new String []{
-                    Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
-            return;
-        }
-
-
-        Task<Location> task = client.getLastLocation(); // get the last location the device was in (current location)
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
             @Override
-            public void onSuccess(final Location location) {
-                if (location != null){
-                    currentLocation = location;
-                    // get the map when everything is ready
+            public void run() {
+                if(repeat){
+                    if (ActivityCompat.checkSelfPermission(LocationAlarm.this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                            PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LocationAlarm.this,
+                            Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-                    LatLng latLng = new LatLng(startLatitude, startLongitude);
-                    mapFragment.getMapAsync(new OnMapReadyCallback() {
+                        ActivityCompat.requestPermissions(LocationAlarm.this, new String []{
+                                Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_CODE);
+                        return;
+                    }
+
+
+                    Task<Location> task = client.getLastLocation(); // get the last location the device was in (current location)
+                    task.addOnSuccessListener(new OnSuccessListener<Location>() {
                         @Override
-                        public void onMapReady(GoogleMap googleMap) {
-                            map = googleMap;
+                        public void onSuccess(final Location location) {
+                            if (location != null){
+                                currentLocation = location;
+                                // get the map when everything is ready
+
+                                LatLng latLng = new LatLng(startLatitude, startLongitude);
+                                mapFragment.getMapAsync(new OnMapReadyCallback() {
+                                    @Override
+                                    public void onMapReady(GoogleMap googleMap) {
+                                        map = googleMap;
+                                    }
+                                });
+
+                            }
                         }
                     });
 
+                    System.out.println("refreshed  " + startLatitude+ " -- " + startLongitude );
+
                 }
+                handler.postDelayed(this,5000);
             }
         });
 
-        System.out.println("refreshed  " + startLatitude+ " -- " + startLongitude );
-        refresh(5000);
+
+        //refresh(5000);
 
     }
 
+//    private void refresh(int milliseconds) {
+//        final Handler handler = new Handler();
+//        final Runnable runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                refreshMyLocation();
+//                refreshDistence();
+//            }
+//        };
+//        handler.postDelayed(runnable, milliseconds);
+//
+//    }
+
     public void AddLocation(View view) {
-//        SearchView searchView = findViewById(R.id.location);
-//        String location = searchView.getQuery().toString();
+        SearchView searchView = findViewById(R.id.location);
+        String location = searchView.getQuery().toString();
 //        Intent intent = new Intent(LocationAlarm.this, AddEditNoteActivity.class);
 //        intent.putExtra("locationName",location);
 //        //setResult(RESULT_OK,intent);
